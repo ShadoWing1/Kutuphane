@@ -18,16 +18,15 @@ void yaz (T a,int b = 1)
     } 
 }
 
-#define KITAP_EKLE 1
-#define KITAP_SIL 2
-#define KITAPLARI_YAZDIR 3
+
 
 class Kutuphane
 {
     private:
         std::vector<std::string> kitaplar;
+        std::ifstream dosya;
     public:
-        Kutuphane(std::string dosya);
+        Kutuphane(std::string dosyaismi);
 
         void kitap_ekle(std::string kitap_ismi);
         void kitap_sil(std::string kitap_ismi);

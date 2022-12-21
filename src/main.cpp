@@ -1,14 +1,16 @@
 #include <kutuphane.hpp>
 
-// hatlar hata1: vector 53 hatalı hata2: vectorle beraber silme işlemi hatalı
+#define KITAP_EKLE 1
+#define KITAP_SIL 2
+#define KITAPLARI_YAZDIR 3
 
 int main(int argc, char const *argv[])
 {
-    Kutuphane kutuphane;
+    Kutuphane kutuphane("kitap_isimleri.txt");
     
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
-    std::cout << "Arayuz";
-    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    std::cout << " 1: kitap ekler 2: kitap siler 3: kitaplari gösterir ";
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n";
 
     int cevap;
     std::cin >> cevap;
@@ -16,29 +18,26 @@ int main(int argc, char const *argv[])
 
     switch (cevap)
     {
-    case KITAP_EKLE:
-        std::cout << u8"\033[2J\033[1;1H";
-        
+    case 1: {
+        std::cout << "asdasd\n";
         std::string kitap_ismi;
         std::getline(std::cin, kitap_ismi);
+        std::getline(std::cin, kitap_ismi);
         kutuphane.kitap_ekle(kitap_ismi);
-        break;
+    } break;
 
-    case KITAP_SIL:
-        std::cout << u8"\033[2J\033[1;1H";
-
-        int index;
+    case 2:
+        int a;
         std::cout << "Kac numarali kitap " << "\n";
         std::cout << ":";
-        std::cin >> index;
-        kutuphane.kitap_sil(index);
+        std::cin >> a;
+        kutuphane.kitap_sil(a);
         break;
     
-    case KITAPLARI_YAZDIR:
-        std::cout << u8"\033[2J\033[1;1H";
-        
+    case 3:
         kutuphane.kitaplari_yazdir();
         break;
+    
     default:
         break;
     }

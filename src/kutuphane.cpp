@@ -1,13 +1,12 @@
 #include <kutuphane.hpp>
 
-Kutuphane::Kutuphane(std::string dosya)
+Kutuphane::Kutuphane(std::string dosyaismi)
 {
-    std::string dosya;
-    std::ifstream dosya("kitap_isimleri.txt");
+    dosya = std::ifstream("kitap_isimleri.txt");
     if(!dosya.is_open())
     {
         yaz("Dosya acilamadi", 1);
-        return 0;
+        return ;
     }
     std::string baslik;
     while(std::getline(dosya, baslik, ','))
@@ -26,14 +25,14 @@ void Kutuphane::kitaplari_yazdir()
 
     for(const auto& kitapismi: Kutuphane::kitaplar)
     {
-        std::cout << sayac+1 << kitapismi<< ",";            
+        std::cout << sayac << ". "<< kitapismi<< "\n";            
+        sayac += 1;
     }
 }
 
 void Kutuphane::kitap_ekle(std::string kitap_ismi)
 {
-        std::ofstream yazdir("kitap_isimleri.txt", std::ios::app);
-        yazdir << kitap_ismi << ",";
+        kitaplar.push_back(kitap_ismi);
 }
 
 void Kutuphane::kitap_sil(int index)
@@ -42,7 +41,7 @@ void Kutuphane::kitap_sil(int index)
     
     while(std::getline(dosya, baslik, ','))
     {
-        basliklar.push_back(baslik);
+        kitaplar.push_back(baslik);
     }
     dosya.close(); // DOSYA KAPANIYOR
     Kutuphane::kitaplar.erase(Kutuphane::kitaplar.begin() + (index-1));
